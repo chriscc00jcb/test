@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title> </title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        .auto-style1 {
+            width: 271px;
+        }
+    </style>
+	 <script language="javascript" type="text/javascript">
+	     var BMI = {};
+	     BMI.getBMI = function (a, b) {
+	         var bmi = b / ((a / 100) * (a / 100));
+	         return bmi;
+	     };
+	     BMI.idealweight = function (a) {
+	         var x = (a - 100) * 0.9;
+	         return x;
+	     };
+	     function Cal(form) {
+	         var a = eval(form.height.value);
+	         var b = eval(form.weight.value);
+	         var bmi = eval(form.BMI.value);
+	         var bmiValue = BMI.getBMI(a, b);
+	         BMI.disp_alert(bmiValue);
+	         form.IW.value = BMI.idealweight(a);
+	         form.BMI.value = bmiValue;
+	     }
+	     BMI.disp_alert = function (bmi) {
+	         if (bmi < 18.5) {
+	             alert("你的體重太輕,要多吃點喲!");
+	         }
+	         else if (bmi >= 18.5 && bmi < 25) {
+	             alert("你的體重正常,要繼續保持喲!");
+	         }
+	         else if (bmi >= 25 && bmi < 30) {
+	             alert("您的體重過重,要減肥了!");
+	         }
+	         else {
+	             alert("你確實要減肥了!");
+	         }
+	     }
+	     function Button1_onclick() {
+	         var a = document.getElementById("name").value;
+	         var b = document.getElementById("birthday").value;
+	         var c = document.getElementById("phonenumber").value;
+	         var e = document.getElementById("homenumber").value;
+	         if (a == "") {
+	             alert("你尚未填寫姓名");
+	         }
+	         if (b == "") {
+	             alert("你尚未填寫生日");
+	         }
+	         if (isNaN(c) == false) {
+	             alert("行動電話不是數字");
+	         }
+	         if (isNaN(e) == false) {
+	             alert("室內電話不是數字");
+	         }
+	     }
+	     function Button2_onclick() {
+	         var patient = {
+	             "name": "Chalmers", "phonenumber": "0912345678", "gender": "Male", "birthday": "1974-12-25", "homenumber": "12345678"
+	         };
+	         document.getElementById("name").value = patient.name;
+	         document.getElementById("phonenumber").value = patient.phonenumber;
+	         document.getElementById("birthday").value = patient.birthday;
+	         document.getElementById("homenumber").value = patient.homenumber;
+	         var d = document.getElementsByName("gender");
+	         for (var i = 0; i < d.length; i++) {
+	             if (d[i].value == patient.gender) {
+	                 d[i].checked = true;
+	             }
+	             else {
+	                 d[i].checked = false;
+	             }
+	             document.getElementById("homenumber").value = patient.homenumber;
+	         }
+	     }
+	     function Button3_onclick() {
+	         var a = document.getElementById("name").value;
+	         var b = document.getElementById("phonenumber").value;
+	         var c = document.getElementById("birthday").value;
+	         var e = document.getElementById("homenumber").value;
+	         var d = document.getElementById("sex").value;
+	         alert("姓名:" + a + ",行動電話:" + b + ",生日:" + c + ",性別:" + d + ",市內電話:" + e);
+	     }
+	     function Button4_onclick() {
+	         a = document.getElementsByName("SKELETAL");
+	         y = new Array();
+	         for (i = 0; i < a.length; i++) {
+	             if (a[i].checked == true)
+	                 y += a[i].value;
+	         }
+
+             alert(y)
+	     }
+
+</script>	 
+</head>
+<body onload =Button5_onclick()>
+
+    <h1 align="center"> NUCLEAR MEDICINE ORDER </h1>
+
+    <form id="Form1" action="http://203.64.84.113/x/RQ_RS.aspx" method="post" name="form1">
+        <fieldset>
+            <legend>BASIC INFORMATION:</legend>
+
+
+            <table>
+                <tr>
+                    <td>Patient Name:
+        <input type="text"  id="name"  name="name" size="10" /><br />
+                    </td>
+                    <td class="auto-style1">Date of birth:
+        <input type="date"  id="birthday"  name="birthday" /><br />
+                    </td>
+
+                    <td>Gender:<br />
+        <select id="g"></select></td>
+                    <script>
+
+                        function Button5_onclick() {
+                            var a = new Array("male", "female");
+                            var y = document.getElementById("g");
+                            for (i = 0 ; i < a.length; i++) {
+                                var option = document.createElement("option");
+                                option.text = a[i];
+                                y.add(option);
+                            }
+                        }
+                </script>
+
+
+                    
+                    <td>Identity card number(ID):
+            <input type="text" id="ID" name="ID" size="10" /><br />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="4">&nbsp;Current address:
+                        <input type="text" name="Current address" size="100" maxlength="30" style="width: 80%" /><br />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="4">&nbsp;Permanent Address:
+                         <input type="text" name="Permanent Address" size="100" maxlength="30" style="width: 77%" /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">&nbsp;Phone number:<input type="text" id="phonenumber" name="phonenumber" size="100" maxlength="30" style="width: 42%" /><br />
+                    </td>
+                    <td colspan="2">&nbsp;Home number:<input type="text" id="homenumber" name="homenumber" size="100" maxlength="30" style="width: 42%" /><br />
+                    </td>
+                </tr>
+            </table>
+
+            其他:<br />
+            <textarea name="suggest" style="width: 244px; height: 47px"></textarea><br />
+
+            <input type="reset" value="清除" />
+
+            <button type="button" onclick="Button1_onclick()">檢查</button>
+            <button type="button" onclick="Button2_onclick()">給值</button>
+            <button type="button" onclick="Button3_onclick()">呈現</button>
+
+
+
+        </fieldset>
+        <fieldset>
+            你的身高(cm):<input type="text" name="height"><br>
+  <br/>
+你的體重(kg):<input type="text" name="weight"><br>
+  <br/>
+<input type="button" value="開始計算" onclick="Cal(this.form)">
+  <br/>
+  <br/>
+  你的理想體重:<input type="text" name="IW"><br/>
+  <br/>
+  您的BMI:<input type="text" name="BMI">
+            </fieldset>
+
+        <fieldset>
+            <h3>SKELETAL</h3>
+            <input type="checkbox" name="SKELETAL" value="Whole Body Bone Scan:3-Phase Bone Scan:" />
+            Whole Body Bone Scan:3-Phase Bone Scan:
+	<input type="checkbox" name="SKELETAL" value="3-Phase Bone Scan:Limited Bone Scan:" />3-Phase Bone Scan:Limited Bone Scan:
+	<input type="checkbox" name="SKELETAL" value="Limited Bone Scan:" />Limited Bone Scan:
+    <input type="checkbox" name="SKELETAL" value="Multiple Images" />Multiple Images
+    <input type="checkbox" name="SKELETAL" value="SPECT" />SPECT<br />
+ <button onclick="Button4_onclick()">Click me</button>
+        </fieldset>
+
+        <fieldset>
+            <h3>CARDIAC </h3>
+            <input type="checkbox" name="CARDIAC1" value="1" />
+            Cardiac Stress-Myocardial Perfusion Study w/LEXISCAN :
+	<input type="checkbox" name="CARDIAC2" value="2" />MUGA:
+	<input type="checkbox" name="CARDIAC3" value="3" />Cardiac Stress-Myocardial Perfusion Study w/TREADMILL
+             <p>
+                 <small>NOTE: Treadmill Stress Test may be converted to Lexiscan by the stressing doctor if patient is unable to perform, complete, or reach target heart
+rate</small>
+             </p>
+        </fieldset>
+        <fieldset>
+            <h3>LIVER/SPLEEN/GALLBLADDER </h3>
+            <input type="checkbox" name="LIVER/SPLEEN/GALLBLADDER1" value="1" />
+            HIDA w/Ejection Fraction :
+	<input type="checkbox" name="LIVER/SPLEEN/GALLBLADDER2" value="2" />Liver/Spleen Static :
+	<input type="checkbox" name="LIVER/SPLEEN/GALLBLADDER3" value="3" />Liver (Hemangioma)
+            <input type="checkbox" name="LIVER/SPLEEN/GALLBLADDER4" value="4" />
+            Liver/Spleen SPECT :
+            <input type="checkbox" name="LIVER/SPLEEN/GALLBLADDER5" value="5" />
+            Spleen SPECT  :
+             <p><small>NOTE: CCK 0.02mcg/kg IV</small></p>
+        </fieldset>
+        <fieldset>
+            <h3>GASTROINTESTINAL</h3>
+            <input type="checkbox" name="GASTROINTESTINAL1" value="1" />
+            Gastric Empty :
+	         <input type="checkbox" name="GASTROINTESTINAL2" value="2" />
+	         
+            Meckel's Diverticulum  :
+            <input type="checkbox" name="GASTROINTESTINAL5" value="3" />
+            Urea Breath Test  :
+        </fieldset>
+        <fieldset>
+            <h3>RESPIRATORY</h3>
+            <input type="checkbox" name="RESPIRATORY1" value="1" />
+            Lung VQ  :
+	<input type="checkbox" name="RESPIRATORY2" value="2" />Lung Perfusion Only   :
+	<input type="checkbox" name="RESPIRATORY3" value="3" />Lung Differential
+        </fieldset>
+        <fieldset>
+            <h3>RENAL</h3>
+            <input type="checkbox" name="RENAL1" value="1" />
+            Renal w/Lasix :
+	 <input type="checkbox" name="RENAL2" value="2" />Renal Function   :
+	<input type="checkbox" name="RENAL3" value="3" />Renal Scarring 
+             <input type="checkbox" name="RENAL4" value="4" />Renal Hypertension  
+        </fieldset>
+
+        
+           
+           
+            
+
+      
+        <center> <input type="submit" value="Login" " /><br /><br/> </center>
+    </form>
+</body>
+</html>
+

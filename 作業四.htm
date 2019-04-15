@@ -91,7 +91,7 @@
 	         alert("姓名:" + a + ",行動電話:" + b + ",生日:" + c + ",性別:" + d + ",市內電話:" + e);
 	     }
 	     function Button4_onclick() {
-	         a = document.getElementsByName("SKELETAL");
+	         a = document.getElementsByName("CARDIAC");
 	         y = new Array();
 	         for (i = 0; i < a.length; i++) {
 	             if (a[i].checked == true)
@@ -187,23 +187,14 @@
   您的BMI:<input type="text" name="BMI">
             </fieldset>
 
-        <fieldset>
-            <h3>SKELETAL</h3>
-            <input type="checkbox" name="SKELETAL" value="Whole Body Bone Scan:3-Phase Bone Scan:" />
-            Whole Body Bone Scan:3-Phase Bone Scan:
-	<input type="checkbox" name="SKELETAL" value="3-Phase Bone Scan:Limited Bone Scan:" />3-Phase Bone Scan:Limited Bone Scan:
-	<input type="checkbox" name="SKELETAL" value="Limited Bone Scan:" />Limited Bone Scan:
-    <input type="checkbox" name="SKELETAL" value="Multiple Images" />Multiple Images
-    <input type="checkbox" name="SKELETAL" value="SPECT" />SPECT<br />
- <button onclick="Button4_onclick()">Click me</button>
-        </fieldset>
+       
 
         <fieldset>
             <h3>CARDIAC </h3>
-            <input type="checkbox" name="CARDIAC1" value="1" />
-            Cardiac Stress-Myocardial Perfusion Study w/LEXISCAN :
-	<input type="checkbox" name="CARDIAC2" value="2" />MUGA:
-	<input type="checkbox" name="CARDIAC3" value="3" />Cardiac Stress-Myocardial Perfusion Study w/TREADMILL
+           
+	<input type ="checkbox" name="CARDIAC" value="穆加 " />MUGA:
+	<input type="checkbox" name="CARDIAC" value="心肌灌注研究 " />Cardiac Stress-Myocardial Perfusion Study w/TREADMILL</br>
+            
              <p>
                  <small>NOTE: Treadmill Stress Test may be converted to Lexiscan by the stressing doctor if patient is unable to perform, complete, or reach target heart
 rate</small>
@@ -211,50 +202,84 @@ rate</small>
         </fieldset>
         <fieldset>
             <h3>LIVER/SPLEEN/GALLBLADDER </h3>
-            <input type="checkbox" name="LIVER/SPLEEN/GALLBLADDER1" value="1" />
-            HIDA w/Ejection Fraction :
-	<input type="checkbox" name="LIVER/SPLEEN/GALLBLADDER2" value="2" />Liver/Spleen Static :
-	<input type="checkbox" name="LIVER/SPLEEN/GALLBLADDER3" value="3" />Liver (Hemangioma)
-            <input type="checkbox" name="LIVER/SPLEEN/GALLBLADDER4" value="4" />
+           
+	<input type="checkbox" name="LIVER/SPLEEN/GALLBLADDER" value="肝/脾靜 " />Liver/Spleen Static :
+	<input type="checkbox" name="LIVER/SPLEEN/GALLBLADDER" value="肝臟（血管瘤）" />Liver (Hemangioma)
+            <input type="checkbox" name="LIVER/SPLEEN/GALLBLADDER" value="肝/脾SPECT " />
             Liver/Spleen SPECT :
-            <input type="checkbox" name="LIVER/SPLEEN/GALLBLADDER5" value="5" />
+            <input type="checkbox" name="LIVER/SPLEEN/GALLBLADDER" value="脾臟SPECT  " />
             Spleen SPECT  :
              <p><small>NOTE: CCK 0.02mcg/kg IV</small></p>
         </fieldset>
         <fieldset>
             <h3>GASTROINTESTINAL</h3>
-            <input type="checkbox" name="GASTROINTESTINAL1" value="1" />
+            <input type="checkbox" name="GASTROINTESTINAL" value="胃空 " />
             Gastric Empty :
-	         <input type="checkbox" name="GASTROINTESTINAL2" value="2" />
-	         
-            Meckel's Diverticulum  :
-            <input type="checkbox" name="GASTROINTESTINAL5" value="3" />
+	         <input type="checkbox" name="GASTROINTESTINAL" value="  梅克爾的憩室  " />
+	         Meckel's Diverticulum  :
+            <input type="checkbox" name="GASTROINTESTINAL" value="尿素呼氣測試 " />
             Urea Breath Test  :
         </fieldset>
         <fieldset>
             <h3>RESPIRATORY</h3>
-            <input type="checkbox" name="RESPIRATORY1" value="1" />
+            <input type="checkbox" name="RESPIRATORY" value=" 龍VQ " />
             Lung VQ  :
-	<input type="checkbox" name="RESPIRATORY2" value="2" />Lung Perfusion Only   :
-	<input type="checkbox" name="RESPIRATORY3" value="3" />Lung Differential
+	<input type="checkbox" name="RESPIRATORY" value="僅肺灌注 " />Lung Perfusion Only
+	<input type="checkbox" name="RESPIRATORY" value="肺分化 " />Lung Differential
         </fieldset>
-        <fieldset>
-            <h3>RENAL</h3>
-            <input type="checkbox" name="RENAL1" value="1" />
-            Renal w/Lasix :
-	 <input type="checkbox" name="RENAL2" value="2" />Renal Function   :
-	<input type="checkbox" name="RENAL3" value="3" />Renal Scarring 
-             <input type="checkbox" name="RENAL4" value="4" />Renal Hypertension  
-        </fieldset>
+        
+
+
+
+ <script>
+
+
+     
+     function showData() {
+         // alert(ret);
+         // ret defined in HTTP2019.js for keep the response value
+         //var myObj = JSON.parse(ret);
+         //  alert(myObj.length);
+
+         var a = document.getElementsByName("CARDIAC");
+         var y = new Array();
+         var n = 0;
+         for (i = 0; i < 2; i++) {
+             if (a[i].checked == true)
+                 y[n] = a[i].value;
+             n++;
+         }
+             alert(y)
+         
+         //  var obj = JSON.parse('{"name": "", "birthday": 0, "phonenumber": "", "homenumber": ""}');
+         var tableStr = "<tr><th>穆加</th><th>心肌灌注研究</th></tr>";
+
+         for (i = 0; i < 2; i++) {
+             // alert(myObj[i].name);
+             var trStr = "<tr>";
+             trStr = trStr + "<td>";
+             trStr = trStr + y[i];
+             trStr = trStr + "</td>";
+
+             trStr = trStr + "</tr>";
+             tableStr = tableStr + trStr;
+         }
+
+
+         // 表格字串字串在id為"t1"的"table"標簽内
+         document.getElementById("t1").innerHTML = tableStr;
+
+
+     }
+        </script>
+
 
         
-           
-           
-            
-
-      
+      <p><input id="Button2" onclick="showData();" type="button" value="ShowData" /></p>
+        <table id="t1" />
         <center> <input type="submit" value="Login" " /><br /><br/> </center>
     </form>
 </body>
 </html>
+
 
